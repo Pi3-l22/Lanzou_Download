@@ -4,12 +4,12 @@ import json
 import os
 from multiprocessing.pool import Pool
 
-download_path = r'D:\蓝奏云下载文件\\'
+download_path = r'D:\文件下载地址\\'
 
 
 # 整理链接地址
 def get_url_data():
-    fp = open('测试地址.txt', 'r', encoding='utf-8')
+    fp = open('蓝奏云文件链接地址.txt', 'r', encoding='utf-8')
     lines = fp.readlines()
     fp.close()
     url = []
@@ -68,6 +68,8 @@ def get_download_id(t: str, k: str, f: str, u: str, pwd: str):
     for data_dict in download_id_lists:
         download_id.append(data_dict['id'])
         file_name_all.append(data_dict['name_all'])
+    # print(download_id)
+    # print(file_name_all)
     return download_id, file_name_all
 
 
@@ -83,22 +85,18 @@ def get_ajaxdata(download_url: str):
     response.encoding = 'utf-8'  # 防止中文乱码
     soup = BeautifulSoup(response.text, 'html.parser')
     # print(soup)
-    script = soup.find('div', attrs={'class': 'load'}).nextSibling.nextSibling.nextSibling.nextSibling
+    script = soup.find('div', attrs={'class': 'load'}).nextSibling.nextSibling
     # print(script)
-    # wsk_sign = 'c20230818';
-    # aihidcms = '19Yt';
-    # iucccjdsd = '';
-    # ws_sign = 'c20230818';
-    # sasign = 'sA2UHOV5vUGFSW1FuBjZTb1Y9V2EHbQMzBDZUZgZrVGZVYQBxASgDagdgC2sBbFxpAWsHMlM6VmADNQE0Sv2_c';
-    # ajaxdata = '?ctdf';
     # 获取各个元素的值
-    wsk_sign = script.string.split(';')[0].split('=')[1][2:-1]
+    # wsk_sign = script.string.split(';')[0].split('=')[1][2:-1]
     aihidcms = script.string.split(';')[1].split('=')[1][2:-1]
     iucccjdsd = script.string.split(';')[2].split('=')[1][2:-1]
-    ws_sign = script.string.split(';')[3].split('=')[1][2:-1]
-    sasign = script.string.split(';')[4].split('=')[1][2:-1]
+    # ws_sign = script.string.split(';')[3].split('=')[1][2:-1]
+    start_index = script.string.find("'sign':") + len("'sign':")
+    end_index = script.string.find(",", start_index)
+    sasign = script.string[start_index:end_index].strip().strip("'")
     ajaxdata = script.string.split(';')[5].split('=')[1][2:-1]
-    # print(wsk_sign, aihidcms, iucccjdsd, ws_sign, sasign, ajaxdata)
+    # print(aihidcms, iucccjdsd, sasign, ajaxdata)
     return aihidcms, iucccjdsd, sasign, ajaxdata
 
 
@@ -140,6 +138,7 @@ def download_file(download_id: list, dir_name: str, file_name_all: list):
     for j in range(len(download_id)):
         # for j in range(1):
         download_url = lanzou_url + '/' + download_id[j]
+        # print(download_url)
         request_url = 'https://wwr.lanzoui.com/ajaxm.php'
         aihidcms, iucccjdsd, sasign, ajaxdata = get_ajaxdata(download_url)
         headers = {
@@ -165,7 +164,7 @@ def download_file(download_id: list, dir_name: str, file_name_all: list):
         # response = requests.get(url=file_url_list[0], headers=headers, timeout=10)
         # web.get('chrome').open(file_url_list[0])
     # 多线程池 并行下载
-    pool = Pool(32)  # 创建一个进程池，最大进程数为32
+    pool = Pool(16)  # 创建一个进程池，最大进程数为16
     for i in range(len(file_url_list)):
         pool.apply_async(thread_download_file, args=(file_url_list[i], file_name_all[i], dir_name))
     pool.close()
