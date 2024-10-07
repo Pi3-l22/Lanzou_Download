@@ -25,7 +25,7 @@ For a detailed introduction to the project, please see my blog post: [Pi3'Notes]
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/lanzou-cloud-batch-downloader.git
+   git clone https://github.com/Pi3-l22/Lanzou_Download.git
    ```
 2. Install the required packages:
    ```bash
