@@ -25,7 +25,7 @@
 
 1. 克隆此仓库：
    ```
-   git clone https://github.com/你的用户名/lanzou-cloud-batch-downloader.git
+   git clone https://github.com/Pi3-l22/Lanzou_Download.git
    ```
 2. 安装所需包：
    ```
