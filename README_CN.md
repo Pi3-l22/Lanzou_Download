@@ -1,5 +1,7 @@
 # 蓝奏云批量下载器
 
+[English](README.md) | [简体中文](README_CN.md)
+
 这是一个用于批量下载蓝奏云文件的Python脚本。
 
 ## 功能特点

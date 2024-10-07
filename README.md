@@ -1,5 +1,7 @@
 # Lanzou Cloud Batch Downloader
 
+[English](README.md) | [简体中文](README_CN.md)
+
 A Python script for batch downloading files from Lanzou Cloud (蓝奏云).
 
 ## Features
