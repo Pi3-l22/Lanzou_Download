@@ -1,28 +1,69 @@
-# lanzou_download
-蓝奏云批量下载文件的Python爬虫代码。
+# Lanzou Cloud Batch Downloader
 
-用于批量下载蓝奏云上分享的文件，支持多个链接，自定义下载位置和文件夹名称。
+A Python script for batch downloading files from Lanzou Cloud (蓝奏云).
 
-代码第7行，更改下载路径
+## Features
 
-```python
-download_path = r'D:\蓝奏云下载文件\\'   # 更改下载路径
-```
+- Supports downloading from multiple Lanzou Cloud links
+- Handles password-protected links
+- Creates separate folders for each download link
+- Utilizes multi-threading for faster downloads
+- Customizable download path
 
-蓝奏云文件链接地址.txt，格式：
+## Requirements
 
-```python
-标题1[文件夹名称]
-https://wwvd.lanzoul.com/b030ok9y
-密码:9cj9
-标题2[文件夹名称]
-https://wwvd.lanzoul.com/b030q0ge
-密码:hktq
-…………
-…………
-```
+- Python 3.x
+- Required Python packages:
+  - requests
+  - beautifulsoup4
 
-![image-20230909160614069](images/image-20230909160614069.png)
+## Installation
 
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/yourusername/lanzou-cloud-batch-downloader.git
+   ```
+2. Install the required packages:
+   ```bash
+   pip install requests beautifulsoup4
+   ```
 
+## Usage
 
+1. Edit the `download_path` in `main.py` to set your desired download location:
+   ```python
+   download_path = r'D:\LanzouDownloads\\'
+   ```
+
+2. Create a text file named `File_Link.txt` in the same directory as `main.py`. Format the file as follows:
+   ```bash
+   Title1[FolderName1]
+   https://wwvd.lanzoul.com/b030ok9y
+   密码:9cj9
+   Title2[FolderName2]
+   https://wwvd.lanzoul.com/b030q0ge
+   密码:hktq
+   ```
+
+3. Run the script:
+   ```bash
+   python main.py
+   ```
+
+## How It Works
+
+1. The script reads the Lanzou Cloud links and passwords from the text file.
+2. For each link, it:
+   - Retrieves necessary parameters from the webpage
+   - Sends a POST request to get file IDs and names
+   - Obtains download URLs for each file
+   - Creates a folder for the download
+   - Uses multi-threading to download all files in parallel
+
+## Note
+
+This script is for educational purposes only. Please respect the terms of service of Lanzou Cloud and the copyright of the files you're downloading.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -9,7 +9,7 @@ download_path = r'D:\文件下载地址\\'
 
 # 整理链接地址
 def get_url_data():
-    fp = open('蓝奏云文件链接地址.txt', 'r', encoding='utf-8')
+    fp = open('File_Link.txt', 'r', encoding='utf-8')
     lines = fp.readlines()
     fp.close()
     url = []
