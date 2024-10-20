@@ -4,7 +4,7 @@
 
 A Python script for batch downloading files from Lanzou Cloud (蓝奏云).
 
-For a detailed introduction to the project, please see my blog post: [Pi3'Notes](https://blog.pi3.fun/post/2023/09/python%E7%88%AC%E8%99%AB%E4%B9%8B%E8%93%9D%E5%A5%8F%E4%BA%91%E6%96%87%E4%BB%B6%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD/)
+For a detailed introduction to the project, please see my blog post: [Pi3's Notes](https://blog.pi3.fun/post/2023/09/python%E7%88%AC%E8%99%AB%E4%B9%8B%E8%93%9D%E5%A5%8F%E4%BA%91%E6%96%87%E4%BB%B6%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD/)
 
 ## Features
 
